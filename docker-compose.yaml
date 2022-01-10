@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  database:
+    image: mysql
+    environment:
+      - "MYSQL_ALLOW_EMPTY_PASSWORD=true"
+    ports:
+      - "3306:3306"
+  web:
+    depends_on:
+      - database
+    build: ./web
+    volumes:
+      - ../:/var/www/html
+    ports:
+      - "80:80"
+  phpmyadmin:
+    image: phpmyadmin
+    depends_on:
+      - database
+    environment:
+      PMA_HOST: "database"
+    ports:
+      - "8080:80"

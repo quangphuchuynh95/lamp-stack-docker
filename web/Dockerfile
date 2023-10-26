@@ -6,4 +6,6 @@ RUN apt-get update -y && apt-get install -y libpq-dev git
 
 RUN docker-php-ext-install bcmath pdo pdo_mysql mysqli
 
+RUN docker-php-ext-install MySQL
+
 RUN a2enmod rewrite
